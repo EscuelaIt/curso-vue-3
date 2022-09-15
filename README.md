@@ -3,6 +3,7 @@
 ## Tabla de contenidos
 - [Clase 1. Conociendo Vue.js](#clase-1)
 - [Clase 2. Arquitectura de un proyecto Vue](#clase-2)
+- [Clase 3. Cómo gestionar la reactividad](#clase-3)
 
 ### Clase 1
 En la clase 1 dimos una introducción global sobre el framework, construyendo una aplicación Vue que está subida [aquí](https://github.com/EscuelaIt/meme-vue-app)
@@ -131,3 +132,17 @@ Resumen de la clase:
 
 - Hicimos un repaso sobre las posibilidades de los atributos dinámicos
 - Finalmente instalamos tailwindcss al proyecto y quitamos lo que no necesitábamos del propio proyecto.
+
+### Clase 3.
+Resumen de la clase:
+- Vimos ejemplos de los problemas de la reactividad en Vue 2.
+- Creamos un ejemplo de uso no reactivo.
+- Aplicarle reactividad al ejemplo
+- Vimos ejemplo con el método `reactive`
+- Vimos ejemplos con el método `ref`
+- Probamos el método en experimenta `$ref` para no necesitar acceder al `.value`
+- Creamos ejemplos con el método `toRefs` para convertir propiedades de un objeto reactivo a reactivas por separado
+- Vimos el uso de las computed properties
+- Probamos los distintos métodos de watchers: `watch`, `watchEffect`, `watchPostEffect` y `watchSyncEffect`.
+
+- Por último instalamos daisyui en el proyecto, creamos datos fake y los listamos en una tabla. Además le añadimos un formulario para ir añadiendo valores a la tabla sin necesidad de recargar nada, todo reactivo.
