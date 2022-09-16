@@ -4,6 +4,7 @@
 - [Clase 1. Conociendo Vue.js](#clase-1)
 - [Clase 2. Arquitectura de un proyecto Vue](#clase-2)
 - [Clase 3. Cómo gestionar la reactividad](#clase-3)
+- [Clase 4. Directivas 1](#clase-4)
 
 ### Clase 1
 En la clase 1 dimos una introducción global sobre el framework, construyendo una aplicación Vue que está subida [aquí](https://github.com/EscuelaIt/meme-vue-app)
@@ -146,3 +147,48 @@ Resumen de la clase:
 - Probamos los distintos métodos de watchers: `watch`, `watchEffect`, `watchPostEffect` y `watchSyncEffect`.
 
 - Por último instalamos daisyui en el proyecto, creamos datos fake y los listamos en una tabla. Además le añadimos un formulario para ir añadiendo valores a la tabla sin necesidad de recargar nada, todo reactivo.
+
+### Clase 4.
+Resumen de la clase:
+- Empezamos viendo ejemplos de uso de atributos mediante la directiva `v-bind`
+```html
+<script setup>
+const image = 'https://bit.ly/3yN7z3B'
+const imgClasses = 'w-24'
+</script>
+
+<template>
+  <img
+    v-bind:src="image"
+    v-bind:class="imgClasses"
+  />
+</template>
+
+<style>
+.w-24 {
+  width: 24rem;
+}
+</style>
+```
+- Continuamos viendo ejemplos sobre los diferentes tipos de datos que se pueden usar en un atributo
+- Vimos ejemplos sobre cómo tener un atributo dinámico
+- Repasamos como podríamos tener atributos dinámicos usando las computed properties
+- Añadimos estilos en linea usando objetos
+```html
+<script setup>
+const buttonStyles = { 'background-color' : 'red' }
+</script>
+
+<template>
+	<button :style="buttonStyles">
+    Botón
+  </button>
+</template>
+```
+- Vimos todas las directivas de renderizado condicional: `v-if`, `v-else`, `v-else-if` y `v-show`.
+- Probamos a usar los renderizamos de listas con la directiva `v-for` y todos los posibles datos que puede iterar.
+- Creamos ejemplos con directivas `v-html` y `v-one`.
+- Por último hicimos unos cambios en la aplicación de cursos:
+  - Cambiamos el formulario para que solo aparezca cuando hagas click en "crear cursos"
+  - Añadimos un checkbox a la tabla para crear un listado de favoritos
+  - Mostramos un listado de favoritos
