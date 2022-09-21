@@ -5,6 +5,7 @@
 - [Clase 2. Arquitectura de un proyecto Vue](#clase-2)
 - [Clase 3. Cómo gestionar la reactividad](#clase-3)
 - [Clase 4. Directivas 1](#clase-4)
+- [Clase 5. Directivas 2](#clase-5)
 
 ### Clase 1
 En la clase 1 dimos una introducción global sobre el framework, construyendo una aplicación Vue que está subida [aquí](https://github.com/EscuelaIt/meme-vue-app)
@@ -192,3 +193,45 @@ const buttonStyles = { 'background-color' : 'red' }
   - Cambiamos el formulario para que solo aparezca cuando hagas click en "crear cursos"
   - Añadimos un checkbox a la tabla para crear un listado de favoritos
   - Mostramos un listado de favoritos
+
+### Clase 5.
+Resumen de la clase:
+- Repaso uso de eventos
+- Distintos usos de eventos
+```html
+<button @click="addValue"></button>
+
+<button @click="addValue($event)"></button>
+
+<button @click="(event) => addValue(event)"></button>
+```
+
+- Vimos el uso de modificadores de eventos. Modificadores como `.stop`, `.prevent` y `.once`
+- Hicimos uso de la directiva `v-model` para campos de formulario
+  - Además vimos ejemplos con input, textarea, checkbox, radio y select.
+- Vimos algunos modificadores de la directiva `v-model` como `.lazy` y `.trim`
+- Creamos una directiva nueva desde cero
+```html
+<script setup>
+const vColor = {
+  mounted: (el, { value }) => {
+    el.style.color = value || 'red'
+  }
+}
+</script>
+
+<template>
+  <p v-color="'blue'">
+    asd
+  </p>
+  <p v-color>
+    aaa
+  </p>
+</template>
+```
+
+- Terminamos haciendo cambios en el proyecto que construimos clase a clase.
+  - Cambiar el submit del formulario
+  - Usamos la directiva `v-model` en los campos del formulario
+  - Añadimos un campo nuevo en el formulario para saber si está activo el curso
+  - Mostramos el campo nuevo en la tabla

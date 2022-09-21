@@ -15,17 +15,15 @@ const courses = ref([
     url: 'https://escuela.it/cursos/curso-arquitectura-hexagonal-DDD-microservicios-cqrs',
   },
 ])
-let newCourse = {}
+const newCourse = {
+  isActive: false,
+}
 
 const allFav = computed(() => {
   return courses.value.filter(course => listFav.value.includes(course.id))
 })
-
-const saveInfoCourse = (event, field) => {
-  const value = event.target.value
-  newCourse[field] = value
-}
 const saveNewCourse = () => {
+  console.log(newCourse)
   courses.value.push({
     ...newCourse,
     id: courses.value[courses.value.length - 1].id + 1,
@@ -52,22 +50,30 @@ const saveFav = event => {
   <main class="mt-4">
     <section v-if="!showCourses">
       <h3>Añade tu nuevo curso</h3>
-      <form class="flex mb-4">
+      <form class="flex mb-4" @submit.prevent="saveNewCourse">
         <input
+          v-model.trim="newCourse.name"
           type="text"
           placeholder="Nombre curso"
           class="input input-bordered w-full max-w-xs mr-3"
-          @input="saveInfoCourse($event, 'name')"
         />
         <input
+          v-model.trim="newCourse.url"
           type="text"
           placeholder="Url curso"
           class="input input-bordered w-full max-w-xs mr-3"
-          @input="saveInfoCourse($event, 'url')"
         />
-        <button type="button" class="btn btn-success" @click="saveNewCourse">
-          Crear
-        </button>
+        <div class="form-control">
+          <label class="label cursor-pointer">
+            <span class="label-text">¿Está activo?</span>
+            <input
+              v-model="newCourse.isActive"
+              type="checkbox"
+              class="toggle"
+            />
+          </label>
+        </div>
+        <button class="btn btn-success">Crear</button>
       </form>
     </section>
     <div v-else class="overflow-x-auto">
@@ -90,6 +96,7 @@ const saveFav = event => {
             <th>Id</th>
             <th>Nombre</th>
             <th>URL</th>
+            <th>Activo</th>
           </tr>
         </thead>
         <tbody>
@@ -107,6 +114,15 @@ const saveFav = event => {
             <th>{{ course.id }}</th>
             <td>{{ course.name }}</td>
             <td>{{ course.url }}</td>
+            <!-- <td>{{ course.isActive ? 'Si' : 'No' }}</td> -->
+            <td>
+              <input
+                type="checkbox"
+                class="checkbox"
+                :checked="course.isActive"
+                disabled
+              />
+            </td>
           </tr>
         </tbody>
       </table>
