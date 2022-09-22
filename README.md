@@ -6,6 +6,7 @@
 - [Clase 3. Cómo gestionar la reactividad](#clase-3)
 - [Clase 4. Directivas 1](#clase-4)
 - [Clase 5. Directivas 2](#clase-5)
+- [Clase 6. Profundizar en componentes](#clase-6)
 
 ### Clase 1
 En la clase 1 dimos una introducción global sobre el framework, construyendo una aplicación Vue que está subida [aquí](https://github.com/EscuelaIt/meme-vue-app)
@@ -235,3 +236,30 @@ const vColor = {
   - Usamos la directiva `v-model` en los campos del formulario
   - Añadimos un campo nuevo en el formulario para saber si está activo el curso
   - Mostramos el campo nuevo en la tabla
+
+### Clase 6.
+Repaso de la clase
+- Empezamos viendo qué es un componente y cómo podemos identificarlos.
+- Continuamos viendo las diferentes formas de escribir componentes
+- Creamos un componente de manera local y otro global
+- Hicimos uso de los elementos del SFC por archivos externos
+```html
+<template src="./template.html"></template>
+<style src="./style.css"></style>
+<script src="./script.js"></script>
+```
+
+- Vimos algunos de los ciclos de vida que están disponibles en Vue
+- Empezamos a usar las props de los componentes y vimos:
+  - definición de props
+  - props con valores por defecto
+  - props required
+  - validación de props
+  - varios tipos de props
+- Pasamos a la definición de eventos y como crear nuestros propios eventos
+  - vimos su definición
+  - uso desde template y desde script
+- Empezamos con una introducción al uso de slots
+  - slots básicos
+  - slots con valores por defecto
+  - slots dentro de otros slots
