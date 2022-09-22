@@ -1,5 +1,11 @@
 <script setup>
-import { computed, ref } from 'vue'
+import { computed, ref, defineAsyncComponent } from 'vue'
+import BaseHeader from '@/components/BaseHeader.vue'
+import BaseInput from '@/components/BaseInput.vue'
+
+const BaseTable = defineAsyncComponent(() =>
+  import('@/components/BaseTable.vue'),
+)
 
 const showCourses = ref(true)
 const listFav = ref([])
@@ -15,6 +21,20 @@ const courses = ref([
     url: 'https://escuela.it/cursos/curso-arquitectura-hexagonal-DDD-microservicios-cqrs',
   },
 ])
+const links = [
+  {
+    section: 'courses',
+    text: 'Cursos',
+  },
+  {
+    section: 'new',
+    text: 'Nuevo curso',
+  },
+]
+const coursesInfo = ref({
+  headers: ['Favoritos', 'Id', 'Nombre', 'URL', 'Activo'],
+  items: courses.value,
+})
 const newCourse = {
   isActive: false,
 }
@@ -35,34 +55,21 @@ const saveNewCourse = () => {
 const showSection = section => {
   showCourses.value = section === 'courses'
 }
-const saveFav = event => {
-  const value = event.target.value
+const saveFav = value => {
   listFav.value.push(+value)
   console.log(listFav.value)
 }
 </script>
 
 <template>
-  <header class="p-6 border-b-2">
-    <a class="mr-4 cursor-pointer" @click="showSection('courses')">Cursos</a>
-    <a class="cursor-pointer" @click="showSection('new')">Nuevo Curso</a>
-  </header>
+  <BaseHeader :links="links" @show-section="showSection" />
   <main class="mt-4">
     <section v-if="!showCourses">
       <h3>Añade tu nuevo curso</h3>
       <form class="flex mb-4" @submit.prevent="saveNewCourse">
-        <input
-          v-model.trim="newCourse.name"
-          type="text"
-          placeholder="Nombre curso"
-          class="input input-bordered w-full max-w-xs mr-3"
-        />
-        <input
-          v-model.trim="newCourse.url"
-          type="text"
-          placeholder="Url curso"
-          class="input input-bordered w-full max-w-xs mr-3"
-        />
+        <BaseInput v-model="newCourse.name" placeholder="Nombre curso" />
+        <BaseInput v-model="newCourse.url" placeholder="Url curso" />
+
         <div class="form-control">
           <label class="label cursor-pointer">
             <span class="label-text">¿Está activo?</span>
@@ -89,43 +96,7 @@ const saveFav = event => {
           </div>
         </div>
       </section>
-      <table class="table w-full">
-        <thead>
-          <tr>
-            <th>Favoritos</th>
-            <th>Id</th>
-            <th>Nombre</th>
-            <th>URL</th>
-            <th>Activo</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="course in courses" :key="course.id">
-            <th>
-              <label>
-                <input
-                  type="checkbox"
-                  class="checkbox"
-                  :value="course.id"
-                  @input="saveFav"
-                />
-              </label>
-            </th>
-            <th>{{ course.id }}</th>
-            <td>{{ course.name }}</td>
-            <td>{{ course.url }}</td>
-            <!-- <td>{{ course.isActive ? 'Si' : 'No' }}</td> -->
-            <td>
-              <input
-                type="checkbox"
-                class="checkbox"
-                :checked="course.isActive"
-                disabled
-              />
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <BaseTable v-bind="coursesInfo" @save-fav="saveFav" />
     </div>
   </main>
 </template>

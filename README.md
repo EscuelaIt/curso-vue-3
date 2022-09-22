@@ -7,6 +7,7 @@
 - [Clase 4. Directivas 1](#clase-4)
 - [Clase 5. Directivas 2](#clase-5)
 - [Clase 6. Profundizar en componentes](#clase-6)
+- [Clase 7. Componentes formulario](#clase-7)
 
 ### Clase 1
 En la clase 1 dimos una introducción global sobre el framework, construyendo una aplicación Vue que está subida [aquí](https://github.com/EscuelaIt/meme-vue-app)
@@ -263,3 +264,84 @@ Repaso de la clase
   - slots básicos
   - slots con valores por defecto
   - slots dentro de otros slots
+
+### Clase 7.
+- Vimos como usar los `named slots` y `dynamic named slots`
+- Hicimos modificaciones en la aplicación
+  - Creamos el componente `BaseHeader`
+  - Creamos el componente `BaseTable`
+- Pasamos a ver cómo podríamos hacer uso de componentes dinámicos
+```html
+<script setup>
+import { shallowRef } from 'vue'
+import BaseInput from './BaseInput.vue'
+import BaseButton from './BaseButton.vue'
+
+const components = {
+  'BaseInput': BaseInput,
+  'BaseButton': BaseButton
+}
+
+const nameComponent = shallowRef(BaseInput)
+
+const changeComponent = (event) => {
+  nameComponent.value = components[event.target.value]
+}
+</script>
+
+<template>
+  <select @input="changeComponent">
+    <option value="BaseInput">Input</option>
+    <option value="BaseButton">Button</option>
+  </select>
+
+  <component :is="nameComponent"></component>
+</template>
+```
+
+- Pasamos a ver el uso de imports dinámicos de componentes
+```js
+import { defineAsyncComponent } from 'vue'
+
+const BaseButton = defineAsyncComponent(() => import('./components/BaseButton.vue'))
+```
+
+- Vimos como podríamos hacer uso de la directiva `v-model` en componentes.
+```js
+<!-- BaseInput.vue -->
+<script setup>
+defineProps(['modelValue'])
+defineEmits(['update:modelValue'])
+</script>
+
+<template>
+  <input
+    :value="modelValue"
+    @input="$emit('update:modelValue', $event.target.value)"
+  />
+</template>
+
+<BaseInput v-model="text" />
+```
+
+- Después pasamos a ver cómo podríamos integrar el uso del `v-model` con computed properties.
+- Vimos también el uso de v-model con distintos argumentos
+```js
+<MyComponent v-model:title="bookTitle" />
+
+<!-- MyComponent.vue -->
+<script setup>
+defineProps(['title'])
+defineEmits(['update:title'])
+</script>
+
+<template>
+  <input
+    type="text"
+    :value="title"
+    @input="$emit('update:title', $event.target.value)"
+  />
+</template>
+```
+
+- A continuación pasamos a ver el uso de v-model con multiples valores.
