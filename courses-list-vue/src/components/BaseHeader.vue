@@ -10,13 +10,19 @@ defineEmits(['show-section'])
 
 <template>
   <header class="p-6 border-b-2">
-    <a
+    <router-link
       v-for="(link, index) in links"
       :key="index"
-      class="mr-4 cursor-pointer"
-      @click="$emit('show-section', link.section)"
+      :to="link.url"
+      class="mr-4 cursor-pointer link"
     >
       {{ link.text }}
-    </a>
+    </router-link>
   </header>
 </template>
+
+<style scoped>
+.link.router-link-active {
+  color: green;
+}
+</style>

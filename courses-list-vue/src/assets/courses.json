@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "name": "Curso de Vue",
+    "url": "https://escuela.it/cursos/curso-vue"
+  },
+  {
+    "id": 2,
+    "name": "Curso de Arquitectura Hexagonal, DDD, Microservicios y CQRS",
+    "url": "https://escuela.it/cursos/curso-arquitectura-hexagonal-DDD-microservicios-cqrs"
+  }
+]

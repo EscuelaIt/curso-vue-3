@@ -13,7 +13,7 @@ defineProps({
     default: true,
   },
 })
-defineEmits(['save-fav'])
+defineEmits(['save-fav', 'row-selected'])
 </script>
 
 <template>
@@ -26,7 +26,11 @@ defineEmits(['save-fav'])
       </tr>
     </thead>
     <tbody>
-      <tr v-for="item in items" :key="item.id">
+      <tr
+        v-for="item in items"
+        :key="item.id"
+        @click="$emit('row-selected', item.id)"
+      >
         <th v-if="showAddFav">
           <label>
             <input

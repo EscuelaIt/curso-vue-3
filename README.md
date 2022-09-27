@@ -8,6 +8,7 @@
 - [Clase 5. Directivas 2](#clase-5)
 - [Clase 6. Profundizar en componentes](#clase-6)
 - [Clase 7. Componentes formulario](#clase-7)
+- [Clase 8. Vue Router](#clase-8)
 
 ### Clase 1
 En la clase 1 dimos una introducción global sobre el framework, construyendo una aplicación Vue que está subida [aquí](https://github.com/EscuelaIt/meme-vue-app)
@@ -345,3 +346,14 @@ defineEmits(['update:title'])
 ```
 
 - A continuación pasamos a ver el uso de v-model con multiples valores.
+
+### Clase 8.
+- Vimos una intoducción sobre qué es Vue Router y una separado
+- Después instalamos y configuramos Vue Router en el proyecto
+- Una vez instalado, separamos la lógica que teníamos en `App.vue` en diferentes archivos y creamos las respectivas rutas
+- Repasamos como podríamos hacer uso de lazy loading con las rutas
+- A continuación implementamos la vista del detalle en la tabla de cursos
+- Una vez tuvimos esto, creamos sub-rutas con la propiedad `children`
+- Repasamos los navigations guards tanto en componentes, en todas las rutas como en cada ruta
+- Hicimos uso de las meta info
+- Por último creamos una pantalla de error por si la ruta no existe
