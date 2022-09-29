@@ -9,6 +9,7 @@
 - [Clase 6. Profundizar en componentes](#clase-6)
 - [Clase 7. Componentes formulario](#clase-7)
 - [Clase 8. Vue Router](#clase-8)
+- [Clase 9. Gestión de estados en Vue](#clase-9)
 
 ### Clase 1
 En la clase 1 dimos una introducción global sobre el framework, construyendo una aplicación Vue que está subida [aquí](https://github.com/EscuelaIt/meme-vue-app)
@@ -357,3 +358,12 @@ defineEmits(['update:title'])
 - Repasamos los navigations guards tanto en componentes, en todas las rutas como en cada ruta
 - Hicimos uso de las meta info
 - Por último creamos una pantalla de error por si la ruta no existe
+
+### Clase 9.
+- Empezamos con una introducción sobre qué es un gestor de estados
+- Continuamos viendo ejemplos de uso con Vuex
+- Después instalamos y configuramos Pinia en el proyecto
+- Comenzamos a crear la store de courses y almacenamos los cursos en un estado compartido
+- Una vez añadimos esto, nos fuimos al formulario de crear curso e integramos el crear curso para que actualice el estado compartido de cursos con el nuevo
+- Vimos también como hacer uso de la store fuera de archivos de componentes
+- En ese caso vimos como integrar la store para hacer bloquear el acceso a una ruta si no estás logeado

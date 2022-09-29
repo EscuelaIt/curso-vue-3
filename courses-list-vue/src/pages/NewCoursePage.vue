@@ -1,6 +1,9 @@
 <script setup>
 import BaseLayout from '@/components/BaseLayout.vue'
 import BaseInput from '@/components/BaseInput.vue'
+import { useCoursesStore } from '@/stores/courses'
+
+const store = useCoursesStore()
 
 const newCourse = {
   isActive: false,
@@ -8,13 +11,8 @@ const newCourse = {
 
 const saveNewCourse = () => {
   console.log(newCourse)
-  // courses.value.push({
-  //   ...newCourse,
-  //   id: courses.value[courses.value.length - 1].id + 1,
-  // })
-  // showCourses.value = true
 
-  // console.log(courses)
+  store.addCourse(newCourse)
 }
 </script>
 

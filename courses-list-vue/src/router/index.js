@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomePage from '@/pages/HomePage.vue'
 import NewCoursePage from '@/pages/NewCoursePage.vue'
 import NotFoundPage from '@/pages/NotFoundPage.vue'
+import { useAuthStore } from '../stores/auth'
 
 const routes = [
   {
@@ -27,6 +28,11 @@ const routes = [
     ],
   },
   {
+    path: '/login',
+    component: () => import('@/pages/LoginPage.vue'),
+    name: 'LoginPage',
+  },
+  {
     path: '/new-course',
     component: NewCoursePage,
     name: 'NewCoursePage',
@@ -39,11 +45,11 @@ const router = createRouter({
   routes,
 })
 
-const isLoggedIn = true
-
 router.beforeEach(to => {
-  if (!isLoggedIn && to.meta.requiresAuth) {
-    return { name: 'HomePage' }
+  const store = useAuthStore()
+
+  if (!store.isLoggedIn && to.meta.requiresAuth) {
+    return { name: 'LoginPage' }
   }
 })
 

@@ -1,17 +1,20 @@
 <script setup>
 import BaseLayout from '@/components/BaseLayout.vue'
 import { computed, defineAsyncComponent, ref } from 'vue'
-import staticCourses from '@/assets/courses.json'
 import { useRouter } from 'vue-router'
+import { useCoursesStore } from '@/stores/courses'
+import { storeToRefs } from 'pinia'
 
 const BaseTable = defineAsyncComponent(() =>
   import('@/components/BaseTable.vue'),
 )
 
 const router = useRouter()
+const store = useCoursesStore()
+
+const { courses } = storeToRefs(store)
 
 const listFav = ref([])
-const courses = ref(staticCourses)
 const coursesInfo = ref({
   headers: ['Favoritos', 'Id', 'Nombre', 'URL', 'Activo'],
   items: courses.value,
