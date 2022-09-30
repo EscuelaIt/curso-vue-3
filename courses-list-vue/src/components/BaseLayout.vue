@@ -1,19 +1,9 @@
 <script setup>
 import BaseHeader from '@/components/BaseHeader.vue'
-const links = [
-  {
-    url: '/courses',
-    text: 'Cursos',
-  },
-  {
-    url: '/new-course',
-    text: 'Nuevo curso',
-  },
-]
 </script>
 
 <template>
-  <BaseHeader :links="links" />
+  <BaseHeader />
   <main class="mt-4">
     <slot />
   </main>

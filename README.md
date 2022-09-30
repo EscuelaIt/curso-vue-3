@@ -10,6 +10,7 @@
 - [Clase 7. Componentes formulario](#clase-7)
 - [Clase 8. Vue Router](#clase-8)
 - [Clase 9. Gestión de estados en Vue](#clase-9)
+- [Clase 10. Composables](#clase-10)
 
 ### Clase 1
 En la clase 1 dimos una introducción global sobre el framework, construyendo una aplicación Vue que está subida [aquí](https://github.com/EscuelaIt/meme-vue-app)
@@ -367,3 +368,11 @@ defineEmits(['update:title'])
 - Una vez añadimos esto, nos fuimos al formulario de crear curso e integramos el crear curso para que actualice el estado compartido de cursos con el nuevo
 - Vimos también como hacer uso de la store fuera de archivos de componentes
 - En ese caso vimos como integrar la store para hacer bloquear el acceso a una ruta si no estás logeado
+
+### Clase 10.
+- Empezamos viendo una introducción a los provide / inject para simplificar la comunicación entre componentes
+- A continuación vimos qué son los composables, cuando usarlos y para qué sirven
+- Creamos el composable de `useFetch` para reutilizar la lógica de hacer peticiones a una api
+- Vimos que hay una librería llamada [Vueuse](https://vueuse.org/) que contiene muchos composables muy útiles
+- Después creamos el composable `useState` para crear la misma lógica que se podría tener en React
+- Por último, creamos el composable `useAuth` para almacenar la información del usuario y así compartirla a través de toda la aplicación, como si de un manejador de estados se tratase.

@@ -4,6 +4,7 @@ import { computed, defineAsyncComponent, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useCoursesStore } from '@/stores/courses'
 import { storeToRefs } from 'pinia'
+import { useState } from '../composables/useState'
 
 const BaseTable = defineAsyncComponent(() =>
   import('@/components/BaseTable.vue'),
@@ -14,7 +15,8 @@ const store = useCoursesStore()
 
 const { courses } = storeToRefs(store)
 
-const listFav = ref([])
+const [listFav, setListFav] = useState([])
+
 const coursesInfo = ref({
   headers: ['Favoritos', 'Id', 'Nombre', 'URL', 'Activo'],
   items: courses.value,
@@ -25,8 +27,7 @@ const allFav = computed(() => {
 })
 
 const saveFav = value => {
-  listFav.value.push(+value)
-  console.log(listFav.value)
+  setListFav([...listFav.value, +value])
 }
 
 const showCourseDetail = courseId => {

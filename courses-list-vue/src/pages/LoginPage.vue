@@ -3,14 +3,17 @@ import BaseInput from '@/components/BaseInput.vue'
 import { ref } from 'vue'
 import { useAuthStore } from '@/stores/auth'
 import { useRouter } from 'vue-router'
+import { useAuth } from '../composables/useAuth'
 
 const store = useAuthStore()
 const router = useRouter()
+const { setUser } = useAuth()
 const user = ref({})
 
 const login = () => {
+  setUser(user.value)
   store.loginUser(user.value)
-  router.push('/courses')
+  router.push('/')
 }
 </script>
 
